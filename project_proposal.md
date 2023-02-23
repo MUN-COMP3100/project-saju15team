@@ -10,6 +10,8 @@
 
 ### Project Feature Table
 
-|Name|Description|End|Deliver|Who|FigmaDesign|
-|-----|-----|-----|-----|-----|-----|
-|Login|User login and profiles|Server|Yes|Rakillo|link|
+|Number|Name|Description|End|Deliver|Who|FigmaDesign|
+|-----|-----|-----|-----|-----|-----|-----|
+|1|ChatBot|User Interactive Bot|Server|Yes|-----|link|
+|2|ChatBot|Button on the right corner of the webpage. When clicked opens up a chat box|Client|Yes|-----|link|
+
