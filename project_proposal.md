@@ -9,3 +9,7 @@ Team member 2: Vijayasajanuki Vijayakanthan, MUNID: 202034621, GITHUB: Saju15
 * A project description goes here. Breifly elaborate on your conception of what the tool is for and the user community needs or wants that you might address. 
 
 ### Project Feature Table
+
+|Name|Description|End|Deliver|Who|FigmaDesign|
+|-----|-----|-----|-----|-----|-----|
+|Login|User login and profiles|Server|Yes|Rakillo|link|
