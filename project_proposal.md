@@ -6,7 +6,7 @@
 
 
 ## Project: MUN course tool
-* A project description goes here. Breifly elaborate on your conception of what the tool is for and the user community needs or wants that you might address. 
+* Course Registration tool for Memorial University, Students can lookup, register or drop courses. It also allows students to access their course/exam schedules, download scholarship forms, get registration help, book appointments with advisors etc.
 
 ### Project Feature Table
 
