@@ -10,6 +10,7 @@
 
 ## Figma Design
 * [Feature 11-UI](https://www.figma.com/file/d56gz5hQFYiS7cCiXRJ7F9/Course-Tool?t=FPrzy8S7XNa7oOiW-1)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: Feature 8 uses similar design.
 
 ### Project Feature Table
 
