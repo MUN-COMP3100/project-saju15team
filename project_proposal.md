@@ -9,7 +9,7 @@
 * Course Registration tool for Memorial University, Students can lookup, register or drop courses. It also allows students to access their course/exam schedules, download scholarship forms, get registration help, book appointments with advisors etc.
 
 ## Figma Design
-[Feature 11](https://www.figma.com/file/d56gz5hQFYiS7cCiXRJ7F9/Course-Tool?t=FPrzy8S7XNa7oOiW-1)
+[*Feature 11-UI](https://www.figma.com/file/d56gz5hQFYiS7cCiXRJ7F9/Course-Tool?t=FPrzy8S7XNa7oOiW-1)
 
 ### Project Feature Table
 
