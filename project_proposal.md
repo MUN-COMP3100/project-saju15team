@@ -2,7 +2,7 @@
 
 ### Team name: Saju15Team
 #### Team member 1: Arushi Moneeram, MUNID: 202059770, GITHUB: arushi818
-#### Team member 2: Vijayasajanuki Vijayakanthan, MUNID: 202034621, GITHUB: Saju15
+#### Team member 2: Vijayasajanuki Vijayakanthan, MUNID: 202034641, GITHUB: Saju15
 
 
 ## Project: MUN course tool
