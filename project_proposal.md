@@ -25,7 +25,7 @@
 |11|Course Schedule (Front-end)|Display schedule as day/week/month|Client|Yes|arushi818|
 |12|FAQ Page|Acccordion (UI) with common questions and answers related to registration.|Client|Yes|Saju15|
 |13|Personal Info page(Back-end)|Update database with the personal information.|Server|Yes|arushi818|
-|14|Custom Display|users can customize the overall look i.e dark/lighttheme, background images|Client|YesSaju15|
+|14|Custom Display|users can customize the overall look i.e dark/lighttheme, background images|Client|Yes|Saju15|
 |15|Download Scholarship forms|User can search for available scholarships and download forms.|Server|Yes|Saju15|
 |16|Detail button|Query database and displauy professors details i.e email,room availble help centres/study groups|Server|Yes|Saju15|
 |17|Sync Calender|Sync selected schedule to local calender|Maybe|Server|arushi818|
