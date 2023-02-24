@@ -21,8 +21,8 @@
 |7|Course search(Back-end)|Server will query the database based on the parameters sent by the client.|Server|Yes|arushi818|
 |8|Drag & Drop Side Bar|Side bar to register/drop courses. (visible to all course info pages) |Client|Yes|arushi818|
 |9|Registration (Back-end)|Send server registrations info to be saved on the database.|Server|Yes|Saju15|
-|10|Course Schedule(Back-end)|Server queries database for date and time of the registered courses.|Server|Yes|arushi818|
-|11|Course Schedule (Front-end)|Display schedule as day/week/month|Client|Yes|arushi818|
+|10|Schedule(Back-end)|Server queries database for date and time of the registered courses.|Server|Yes|arushi818|
+|11|Schedule (Front-end)|Display weekly schedule with a side bar allowing user to add desired courses they haven't yet registered for and other personal activities.  |Client|Yes|arushi818|
 |12|FAQ Page|Acccordion (UI) with common questions and answers related to registration.|Client|Yes|Saju15|
 |13|Personal Info page(Back-end)|Update database with the personal information.|Server|Yes|arushi818|
 |14|Custom Display|users can customize the overall look i.e dark/lighttheme, background images|Client|Yes|Saju15|
