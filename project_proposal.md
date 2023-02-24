@@ -31,7 +31,7 @@
 |13|Personal Info page(Back-end)|Update database with the personal information|Server|Yes|arushi818|
 |14|Custom Display|users can customize the overall look i.e dark/lighttheme, background images|Client|Yes|Saju15|
 |15|Download Scholarship forms|User can search for available scholarships and download forms|Server|Yes|Saju15|
-|16|Detail button|Query database and displauy professors details i.e email,room availble help centres/study groups.|Server|Yes|Saju15|
+|16|Detail button|Query database and get professors' details i.e email,room availble help centres/study groups.|Server|Yes|Saju15|
 |17|Sync Calender|Sync selected schedule to local calender.|Maybe|Server|arushi818|
 |18|Book appointments|Book appointments with acedemic advisors.|Maybe|Server|Saju15|
 |19|Personal Info page|Add/Edit/Delete personal information.|Maybe|Client|arushi818|
