@@ -1,6 +1,6 @@
 import { getDb } from '../utils/db.mjs';
 
-async function _get_contacts_collection (){
+async function _get_course_collection (){
     let db = await getDb();
     return await db.collection('fall');
 };
@@ -10,7 +10,7 @@ async function _get_contacts_collection (){
  * to save and retrieve courses (all courses|based subject|based on subject and number)
  */
 
-class Course {
+export class Course {
 
     constructor(sub, num, name, des, creditHours, crn, sec, enrollmentStatus, type, type_code, start, end, days, room, building, instructor){
         this.subject = sub;
@@ -37,7 +37,7 @@ class Course {
      */
     async save(){
         try{ 
-            let collection = await _get_contacts_collection();
+            let collection = await _get_course_collection();
             let mongoObj = await collection.insertOne(this);
             console.log('1 Course was inserted in the database with id -> '+mongoObj.insertedId);
             return 'Course correctly inserted in the Database.';            
@@ -51,8 +51,8 @@ class Course {
      * all the courses inside the database
      * @returns {Array[Course]} - An array with all courses retrieved
      */
-    static async find_All(){
-        let collection = await _get_contacts_collection();
+    static async find_all(){
+        let collection = await _get_course_collection();
         let objs = await collection.find({}).toArray();
         return objs;                
     }
@@ -64,7 +64,7 @@ class Course {
      * @returns {Array[Course]} - An array with all courses retrieved
      */
     static async get_subject(subject){
-        let collection = await _get_contacts_collection();
+        let collection = await _get_course_collection();
         let objs = await collection.find({"subject": subject}).toArray();
         return objs;
     }
@@ -76,7 +76,7 @@ class Course {
      * @returns {Array[Course]} - An array with all courses retrieved
      */
     static async get_subject_number(subject,num){
-        let collection = await _get_contacts_collection();
+        let collection = await _get_course_collection();
         let objs = await collection.find({"subject": subject , "number": num}).toArray();
         return objs;
     }
@@ -88,7 +88,7 @@ class Course {
      * @returns {Course} - A course object 
      */
     static async get_subject_number_section(subject,num,sec){
-        let collection = await _get_contacts_collection();
+        let collection = await _get_course_collection();
         let obj = await collection.find({"subject": subject , "number": num , "section": sec});
         return obj;
     }
@@ -100,7 +100,7 @@ class Course {
      * @returns {Course} - A course object 
      */
     static async get_crn(crn){
-        let collection = await _get_contacts_collection();
+        let collection = await _get_course_collection();
         let obj = await collection.find({ "crn": crn });
         return obj;
     }
