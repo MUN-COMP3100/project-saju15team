@@ -104,5 +104,4 @@ export class Course {
         let obj = await collection.find({ "crn" : crn }).toArray();
         return obj;
     }
-
 }
