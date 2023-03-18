@@ -104,11 +104,16 @@ export class Student{
      * @returns {Array} An array containing the student's name, stufentID, email, address and 
      * phone number
      */
-    async getStudentInfo(student_id){
+    static async getStudentInfo(student_id){
         let collection = await _get_students_collection();
         // console.log(name)
         let obj = await collection.find({"student_id": student_id});
         return [obj.first_name, obj.last_name,obj.student_id, obj.email, obj.address, obj.mobile];
 
+    }
+
+    async getCourse(student_id){
+        let student = Student.findStudentByID(student_id);
+        return student.addCourse;
     }
 }

@@ -36,7 +36,7 @@ export async function find_student_email(req, res) {
  * @param {Request} req - A request Object
  * @param {Response} res - A response Object
  */
-export async function update_reg_course_add(req, res) {
+export async function add_reg_course(req, res) {
     let course_to_match = req.params.registered_courses;
     let courses = course_to_match.push(idkwhattowritelol);
     let isValid = await validate_fields(courses);
