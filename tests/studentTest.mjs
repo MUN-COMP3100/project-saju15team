@@ -39,7 +39,16 @@ async function update(){
     console.log(res1.data);
 }
 
+async function dropCourse(){
+    let id = 202344556;
+    let data1 = {
+        crn: 41758
+    }
+    let res1 = await instance.put('/students4/'+ id, data1);
+    console.log(res1.data);
+}
 
 getStudentbyId();
 getStudentbyEmail();
-update();
+await update();
+dropCourse();

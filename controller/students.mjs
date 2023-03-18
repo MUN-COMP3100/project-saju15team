@@ -47,6 +47,20 @@ export async function add_reg_course(req, res) {
 }
 
 /**
+ * A function to add course
+ * @param {Request} req - A request Object
+ * @param {Response} res - A response Object
+ */
+export async function drop_reg_course(req, res) {
+    let id_to_match = parseInt(req.params.student_id);
+    let crn_to_match = parseInt(req.body.crn);
+    let msg = await Student.drop(id_to_match,crn_to_match);
+    //console.log(id_to_match);
+    res.send(msg);  
+ 
+}
+
+/**
  * A function that gets courses taken by a student and returns all of the courses in an array. 
  * @param {Request} req - A request Object
  * @param {Response} res - A response Object

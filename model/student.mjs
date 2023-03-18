@@ -57,7 +57,7 @@ export class Student{
         let collection = await _get_students_collection();
         let courseObj = await Course.get_crn(crn);
         //console.log(courseObj);
-        let studentObj = Student.findStudentByID(student_id);
+        let studentObj = await Student.findStudentByID(student_id);
         if (studentObj.registered_courses == "" || studentObj.registered_courses == null) {
             studentObj.registered_courses = [];
         }
@@ -76,16 +76,34 @@ export class Student{
      * @param {Number} crn - the crn of a course to be dropped
      * @returns {String} A message if the course was dropped or not
      */
-    async drop(crn){
+    static async drop(student_id,crn){
         let collection = await _get_students_collection();
-        let courseObj = Course.get_crn(crn);
-        this.registered_courses.pop(courseObj);
-        let new_vals = {$set: {'registered_courses': registered_courses}};
-        let obj = await collection.updateOne({'student_id': this.student_id},new_vals)
-        if (obj.deletedCount > 0){
-            return 'Course was dropped successfully.'
+        let studentObj = await Student.findStudentByID(student_id);
+        //let courseObj = await Course.get_crn(crn);
+        let index = -1;
+        for(let i = 0; i < studentObj[0].registered_courses[0].length; i++){
+            console.log()
+            if(studentObj[0].registered_courses[0][0].crn == crn){
+                index = i;
+            }
+        }
+        // try{
+        //     index = studentObj[0].registered_courses.indexOf(courseObj[0]);
+        // }
+        // catch(err){
+        //     console.log(studentObj[0].registered_courses);
+        // }
+        if (index > -1){
+            console.log(studentObj[0]);
+            let what = studentObj[0].registered_courses[0].splice(index,1);
+            console.log(studentObj[0]);
+        }
+        let new_vals = {$set: {'registered_courses': studentObj[0].registered_courses}};
+        let obj = await collection.updateOne({'student_id': student_id}, new_vals)
+        if (obj.modifiedCount > 0){
+            return 'Dropped Successfuly.';
         }else{
-            return 'Error, course not found.'
+            return 'Course not dropped';
         }
     }
 
