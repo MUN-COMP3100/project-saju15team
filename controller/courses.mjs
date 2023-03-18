@@ -71,7 +71,7 @@ export async function find_subject(req, res) {
  */
 export async function find_subject_number(req, res) {
     let subject_to_match = req.params.subject;
-    let number_to_match = req.params.number;
+    let number_to_match = parseInt(req.params.number);
     let objs = await Course.get_subject_number(subject_to_match,number_to_match);
     if (objs.length > 0){
         console.log(objs.length+' item(s) sent.');
