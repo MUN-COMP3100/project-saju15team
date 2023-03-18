@@ -107,7 +107,7 @@ export async function find_subject_number_section(req, res) {
  * @param {Response} res - A response Object
  */
 export async function find_crn(req, res) {
-    let crn_to_match = req.params.crn;
+    let crn_to_match = parseInt(req.params.crn);
     let obj = await Course.get_crn(crn_to_match);
     if (obj.length > 0){
         console.log(obj.length+' course sent.');

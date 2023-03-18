@@ -101,7 +101,7 @@ export class Course {
      */
     static async get_crn(crn){
         let collection = await _get_course_collection();
-        let obj = await collection.find({ "crn": crn });
+        let obj = await collection.find({ "crn" : crn }).toArray();
         return obj;
     }
 

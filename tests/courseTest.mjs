@@ -10,21 +10,23 @@ const instance = axios.create({
 
 async function getAll(){
     try{
-        let res1 = await instance.get('/fall')
-        console.log('Listing courses')
-        console.log(res1.data)
+        let res1 = await instance.get('/fall');
+        console.log('Listing courses');
+        console.log(res1.data);
     }catch(err){
-        console.log('ERROR: '+err)
+        console.log('ERROR: '+err);
     }
 }
 
-async function getAll(){
+async function getSubject(){
     try{
-        let res1 = await instance.get('/fall')
-        console.log('Listing courses')
-        console.log(res1.data)
+        let subject = 41758;
+        let res1 = await instance.get('/fall/'+subject);
+        console.log('Listing courses');
+        console.log(res1.data);
     }catch(err){
-        console.log('ERROR: '+err)
+        console.log('ERROR: '+err);
     }
 }
-getAll();
+//getAll();
+getSubject();
