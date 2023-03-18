@@ -82,25 +82,6 @@ export async function find_subject_number(req, res) {
 }
 
 /**
- * A function that get a course by subject,number and section,returns all
- * data of the requested subjects. 
- * @param {Request} req - A request Object
- * @param {Response} res - A response Object
- */
-export async function find_subject_number_section(req, res) {
-    let subject_to_match = req.params.subject;
-    let number_to_match = req.params.number;
-    let section_to_match = req.params.section;
-    let obj = await Course.get_subject_number_section(subject_to_match,number_to_match,section_to_match);
-    if (obj.length > 0){
-        console.log(obj.length+' course sent.');
-        res.send(obj);        
-    }else{
-        res.send('Course not found');
-    }  
-}
-
-/**
  * A function that get a course by crn and returns all
  * data of the requested subjects. 
  * @param {Request} req - A request Object

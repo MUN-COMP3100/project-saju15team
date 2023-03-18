@@ -82,18 +82,6 @@ export class Course {
     }
 
     /**
-     * This method will retrieve a courss with the subject number and section passed
-     * as a parameter
-     * @param {String,Integer,String} - subject,subject number,section of the course to be retrieved
-     * @returns {Course} - A course object 
-     */
-    static async get_subject_number_section(subject,num,sec){
-        let collection = await _get_course_collection();
-        let obj = await collection.find({"subject": subject , "number": num , "section": sec});
-        return obj;
-    }
-
-    /**
      * This method will retrieve a course with the CRN passed
      * as a parameter
      * @param {Integer} - CRN of the course to be retrieved

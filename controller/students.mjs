@@ -6,7 +6,7 @@ import { Student } from '../model/student.mjs';
  * @param {Response} res - A response Object
  */
 export async function find_student_ID(req, res) {
-    let id_to_match = req.params.student_id;
+    let id_to_match = parseInt(req.params.student_id);
     let obj = await Student.findStudentByID(id_to_match);
     if (obj.length > 0){
         console.log(obj.length+' student sent.');
@@ -31,16 +31,19 @@ export async function find_student_email(req, res) {
         res.send('student not found');
     }
 }
-/**NOT SURE ABOUT THIS ONE because where do I get the course to be added from?
- * A function to update the information about a given contact.
+
+/**
+ * A function to add course
  * @param {Request} req - A request Object
  * @param {Response} res - A response Object
  */
 export async function add_reg_course(req, res) {
-    let crn_to_match = req.params.crn;
-    let msg = await Student.addCourse(crn_to_match);
-    console.log(msg);
-    res.send(msg);   
+    let id_to_match = parseInt(req.params.student_id);
+    let crn_to_match = parseInt(req.body.crn);
+    let msg = await Student.addCourse(id_to_match,crn_to_match);
+    //console.log(id_to_match);
+    res.send(msg);  
+ 
 }
 
 /**

@@ -32,8 +32,7 @@ export class Student{
      */
     static async findStudentByID(student_id){
         let collection = await _get_students_collection();
-        // console.log(name)
-        let obj = await collection.find({"student_id": student_id}); //_id should be blue
+        let obj = await collection.find({"student_id": student_id}).toArray(); //_id should be blue
         return obj;
     }
     /**
@@ -44,8 +43,7 @@ export class Student{
      */
       static async findStudentByEmail(email){
         let collection = await _get_students_collection();
-        // console.log(name)
-        let obj = await collection.find({"email": email}); //_id should be blue
+        let obj = await collection.find({"email": email}).toArray(); 
         return obj;
       }
     
@@ -55,17 +53,22 @@ export class Student{
      * @param {Number} crn - The crn of the course to be added
      * @returns {String} A message if registration was successful or not
      */
-    async addCourse(crn){
+    static async addCourse(student_id,crn){
         let collection = await _get_students_collection();
-        let courseObj = Course.get_crn(crn);
-        this.registered_courses.push(courseObj);
-        let new_vals = {$set: {'registered_courses': this.registered_courses}};
-        let obj = await collection.updateOne({'student_id': this.student_id}, new_vals)
+        let courseObj = await Course.get_crn(crn);
+        //console.log(courseObj);
+        let studentObj = Student.findStudentByID(student_id);
+        if (studentObj.registered_courses == "" || studentObj.registered_courses == null) {
+            studentObj.registered_courses = [];
+        }
+        studentObj.registered_courses.push(courseObj);
+        let new_vals = {$set: {'registered_courses': studentObj.registered_courses}};
+        let obj = await collection.updateOne({'student_id': student_id}, new_vals)
         if (obj.modifiedCount > 0){
             return 'Registration Successful.';
         }else{
-            return 'Registration Error.'
-            }        
+            return 'Registration Failed';
+        }        
     }
     /**
      * This method will drop a course with the specified
@@ -113,8 +116,8 @@ export class Student{
 
     }
 
-    async getCourse(student_id){
+    static async getCourse(student_id){
         let student = Student.findStudentByID(student_id);
-        return student.addCourse;
+        return student.registered_courses;
     }
 }
