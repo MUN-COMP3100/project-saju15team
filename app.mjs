@@ -14,8 +14,8 @@ async function createServer() {
     try {
         await connectToDB();
         // get all courses
-        app.get('/fall', list_all);
         app.get('/fall/:crn', find_crn);
+        app.get('/fall/:subject', find_subject);
         // start the server
         server = app.listen(port, () => {
           console.log('Example app listening at http://localhost:%d', port);

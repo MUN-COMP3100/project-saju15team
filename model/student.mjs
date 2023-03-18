@@ -1,3 +1,4 @@
+import { Course } from './course.mjs';
 import { getDb } from '../utils/db.mjs';
 
 async function _get_students_collection (){
@@ -42,10 +43,10 @@ export class Student{
      * @returns {Student} - An object Student with all student's data
      */
       static async findStudentByEmail(email){
-      let collection = await _get_students_collection();
-      // console.log(name)
-      let obj = await collection.find({"email": email}); //_id should be blue
-      return obj;
+        let collection = await _get_students_collection();
+        // console.log(name)
+        let obj = await collection.find({"email": email}); //_id should be blue
+        return obj;
       }
     
     
@@ -55,16 +56,16 @@ export class Student{
      * @returns {String} A message if registration was successful or not
      */
     async addCourse(crn){
-    let collection = await _get_students_collection();
-    let courseObj = Course.get_crn(crn);
-    this.registered_courses.push(courseObj);
-    let new_vals = {$set: {'registered_courses': registered_courses}};
-    let obj = await collection.updateOne({'student_id': this.student_id}, new_vals)
-    if (obj.modifiedCount > 0){
-        return 'Registration Successful.';
-    }else{
-        return 'Registration Error.'
-        }        
+        let collection = await _get_students_collection();
+        let courseObj = Course.get_crn(crn);
+        this.registered_courses.push(courseObj);
+        let new_vals = {$set: {'registered_courses': this.registered_courses}};
+        let obj = await collection.updateOne({'student_id': this.student_id}, new_vals)
+        if (obj.modifiedCount > 0){
+            return 'Registration Successful.';
+        }else{
+            return 'Registration Error.'
+            }        
     }
     /**
      * This method will drop a course with the specified
@@ -74,7 +75,7 @@ export class Student{
      */
     async drop(crn){
         let collection = await _get_students_collection();
-        courseObj = Course.get_crn(crn);
+        let courseObj = Course.get_crn(crn);
         this.registered_courses.pop(courseObj);
         let new_vals = {$set: {'registered_courses': registered_courses}};
         let obj = await collection.updateOne({'student_id': this.student_id},new_vals)

@@ -8,25 +8,27 @@ const instance = axios.create({
     headers: {'content-type': 'application/json'}
 });
 
-async function getAll(){
+async function getSubject(){
     try{
-        let res1 = await instance.get('/fall');
-        console.log('Listing courses');
+        let subject = 'AAS';
+        let res1 = await instance.get('/fall/' + subject);
+        console.log('Listing courses of the subject ' + subject + ': ');
         console.log(res1.data);
     }catch(err){
         console.log('ERROR: '+err);
     }
 }
 
-async function getSubject(){
+async function getSubjectwithCRN(){
     try{
-        let subject = 41758;
-        let res1 = await instance.get('/fall/'+subject);
-        console.log('Listing courses');
+        let crn = 41758;
+        let res1 = await instance.get('/fall/'+crn);
+        console.log('Listing course with CRN ' + crn + ': ');
         console.log(res1.data);
     }catch(err){
         console.log('ERROR: '+err);
     }
 }
-//getAll();
+
 getSubject();
+getSubjectwithCRN();
