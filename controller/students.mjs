@@ -38,10 +38,21 @@ export async function find_student_email(req, res) {
  */
 export async function add_reg_course(req, res) {
     let course_to_match = req.params.registered_courses;
-    let courses = course_to_match.push(idkwhattowritelol);
-    let isValid = await validate_fields(courses);
+    let newcourses = req.body.registered_courses;
+
+    let first_name = req.body.first_name;
+    let last_name = req.body.last_name;
+    let student_id = req.body.student_id;
+    let email = req.body.email;
+    let address = req.body.address;
+    let mobile = req.body.mobile;
+    let password = req.body.password;
+    let total_credits_received = req.body.total_credits_received;
+    let credits_available = req.body.credits_available;
+
+    let isValid = await validate_fields(first_name, last_name,student_id, email, address, mobile, password, total_credits_received, credits_available, newcourses);
     if (isValid){
-        let msg = await Contact.update(courses, new Student(new_name, email, tel, address))
+        let msg = await Contact.update(course_to_match, new Student(first_name, last_name,student_id, email, address, mobile, password, total_credits_received, credits_available, newcourses))
         res.send(msg);
     } else {
         console.log("The document was not updated");
