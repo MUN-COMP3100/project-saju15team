@@ -1,10 +1,26 @@
 import { strictEqual, fail, deepStrictEqual } from 'assert';
 import { searchCourses } from '../ServerFeatures/courseSearch.mjs';
 import { getProfDetails } from '../ServerFeatures/profDetail.mjs';
+import { login } from '../ServerFeatures/login.mjs';
 
 
 describe('The Shire University: Course Tool - Tests with Mocha', function(){
     describe('Test Server Features', function(){
+        //Testing Feature 1: Login
+        describe('Login', async function(){ 
+            it('Fail 1. GET - Test invalid inputs.', async function(){
+                let msg = await login();
+                strictEqual(msg, 'Inputs cannot be blank.');                
+            });
+            it('Fail 2. GET - Incorrect password.', async function(){
+                let msg = await login('triddle@hogwarts.ca','avada');
+                strictEqual(msg, 'Password does not match.');                
+            });
+            it('Success 3. GET - Valid email and password.', async function(){
+                let msg = await login('triddle@hogwarts.ca','avadaKEDavra');
+                strictEqual(msg, 'Login Successful!');                
+            });
+        });
         //Testing Feature 2: Course Search
         describe('Course Search', async function(){            
             it('Fail 1. GET - Test invalid parameters in the method call', async function(){
