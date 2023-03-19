@@ -4,6 +4,7 @@ import { searchCourses } from '../ServerFeatures/courseSearch.mjs';
 
 describe('The Shire University: Course Tool - Tests with Mocha', function(){
     describe('Test Server Features', function(){
+        //Testing Feature 2: Course Search
         describe('Course Search', async function(){            
             it('Fail 1. GET - Test invalid parameters in the method call', async function(){
                 let subject = '';
