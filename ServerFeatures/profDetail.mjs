@@ -11,7 +11,7 @@ const instance = axios.create({
 async function getProfDetails(employee_id) {
 
     try{
-        
+
         let res1 = await instance.get('/professors/' + employee_id );
         console.log('Listing details of ' + employee_id + ': ' );
         let profObj = res1.data[0];
@@ -26,4 +26,4 @@ async function getProfDetails(employee_id) {
     }
 }
 
-getProfDetails(18900611);
+//getProfDetails(18900611);
