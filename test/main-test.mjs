@@ -1,5 +1,6 @@
 import { strictEqual, fail, deepStrictEqual } from 'assert';
 import { searchCourses } from '../ServerFeatures/courseSearch.mjs';
+import { getProfDetails } from '../ServerFeatures/profDetail.mjs';
 
 
 describe('The Shire University: Course Tool - Tests with Mocha', function(){
@@ -55,9 +56,24 @@ describe('The Shire University: Course Tool - Tests with Mocha', function(){
                 let res1 = await searchCourses('','',crn);
                 deepStrictEqual(res1.data, arr);                
             });
-            
-
-        });        
+        }); 
+        //Testing Feature 6: Detail Button for professors
+        describe('Professor Detail', async function(){     
+            it('Fail 1. GET - Test invalid employee Id', async function(){
+                let msg = await getProfDetails(12345);
+                strictEqual(msg, 'Not Found!');                
+            });
+            it('SUCCESS 2. GET - Test valid employee Id', async function(){
+                let arr = [
+                    'Minerva Mcgonagall',
+                    'mmcgonagall@hogwarts.ca',
+                    'Education',
+                    'WIZ 2001'
+                ]
+                let res = await getProfDetails(18900611);
+                deepStrictEqual(res, arr);                
+            });
+        });
     });
     
 });
