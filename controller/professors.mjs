@@ -6,7 +6,7 @@ import { Professor } from '../model/professor.mjs';
  * @param {Response} res - A response Object
  */
 export async function find_prof_info(req, res) {
-    let id_to_match = req.params.employee_id;
+    let id_to_match = parseInt(req.params.employee_id);
     let obj = await Professor.getProfInfo(id_to_match);
     if (obj.length > 0){
         console.log(obj.length+' details sent.');
