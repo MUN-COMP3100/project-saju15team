@@ -1,4 +1,4 @@
-﻿student_id,first_name,last_name,email,adresss,mobile,password,total_credits_received,credits_available,registered_courses
+﻿student_id,first_name,last_name,email,address,mobile,password,total_credits_received,credits_available,registered_courses
 202311223,Harry,Potter,hpotter@hogwarts.ca,"9-3/4, Platform Place, St. John's, NL",70912345567,expectoPatronum123,60,15,
 202322334,Ron,Weasley,rweasley@hogwarts.ca,"10 Wizards Wheezers, St. John's, NL",70911222456,itsLeviosa@15,45,15,
 202333445,Hermoine,Granger,hgranger@hogwarts.ca,"24 Forbidden Forrest, St. John's,  NL",70934987591,alohomora7349015,75,15,
