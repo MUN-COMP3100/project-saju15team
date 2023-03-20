@@ -4,6 +4,7 @@ import { getProfDetails } from '../ServerFeatures/profDetail.mjs';
 import { login } from '../ServerFeatures/login.mjs';
 import { Register } from '../ServerFeatures/Registration.mjs';
 import { getSchedule } from '../ServerFeatures/courseSchedule.mjs';
+import { getStudentPersonalInfo } from '../ServerFeatures/studentInfo.mjs';
 
 
 describe('The Shire University: Course Tool - Tests with Mocha', function(){
@@ -112,7 +113,7 @@ describe('The Shire University: Course Tool - Tests with Mocha', function(){
             });
         }); 
         //Testing Feature 3: Registration
-        describe('PRegistration', async function(){ 
+        describe('Registration', async function(){ 
             it('Fail 1. Test No parameter(studentId,RegType,crn)', async function(){
                 let msg = await Register();
                 strictEqual(msg, 'Invalid Parameters!');                
@@ -130,9 +131,29 @@ describe('The Shire University: Course Tool - Tests with Mocha', function(){
                 strictEqual(msg, 'Dropped Successfuly.');                
             });
         });
+        //Testing Feature 4: Student Personal Info
+        describe('Student personal information', async function(){ 
+            it('FAIL 1. Test invalid student id', async function(){
+                let studentId = 202333446;
+                let msg = await getStudentPersonalInfo(studentId);
+                strictEqual(msg, 'Invalid student Id!');                
+            });
+            it('SUCCESS 2. GET - Valid student id', async function(){
+                let studentId = 202322334;
+                let info = {
+                    name: 'Ron Weasley',
+                    email: 'rweasley@hogwarts.ca',
+                    mobile: 70911222456,
+                    address: "10 Wizards Wheezers, St. John's, NL",
+                    total_credits_received: 45
+                  };
+                let res = await getStudentPersonalInfo(studentId);
+                deepStrictEqual(res, info);                
+            });
+        });
         //Testing Feature 5: Course Schedule
         describe('Course Schedule', async function(){
-            it('FAIL 1. Test student id', async function(){
+            it('FAIL 1. Test invalid student id', async function(){
                 let studentId = 202333446;
                 let msg = await getSchedule(studentId);
                 strictEqual(msg, 'Invalid Student Id');                
