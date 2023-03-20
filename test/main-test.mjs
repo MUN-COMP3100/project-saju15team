@@ -2,6 +2,7 @@ import { strictEqual, fail, deepStrictEqual } from 'assert';
 import { searchCourses } from '../ServerFeatures/courseSearch.mjs';
 import { getProfDetails } from '../ServerFeatures/profDetail.mjs';
 import { login } from '../ServerFeatures/login.mjs';
+import { Register } from '../ServerFeatures/Registration.mjs';
 
 
 describe('The Shire University: Course Tool - Tests with Mocha', function(){
@@ -23,7 +24,7 @@ describe('The Shire University: Course Tool - Tests with Mocha', function(){
         });
         //Testing Feature 2: Course Search
         describe('Course Search', async function(){            
-            it('Fail 1. GET - Test invalid parameters in the method call', async function(){
+            it('Fail 1. Test invalid parameters in the method call', async function(){
                 let subject = '';
                 let number = 101;
                 let msg = await searchCourses(subject,number);
@@ -32,11 +33,23 @@ describe('The Shire University: Course Tool - Tests with Mocha', function(){
             it('Success 2. GET - Test with subject parameter', async function(){
                 let arr = [
                     {
-                      _id: '6417538a9d7a08526ea2fb72',
-                      subject: 'TST',
-                      number: 101,
-                      section: 'A32',
-                      crn: 90786
+                        _id: '64179c5c5310ab00c15cb9bf',
+                        subject: "TST",
+                        number: 101,
+                        name: "",
+                        description: "",
+                        credit_hours: "",
+                        crn: 90786,
+                        section: "A32",
+                        enrollment_status: "",
+                        type: "",
+                        type_code: "",
+                        start_time: "",
+                        end_time: "",
+                        days:"",
+                        room:"",
+                        building:"",
+                        instructors:""
                     }
                   ]
                 let subject = 'TST';
@@ -46,11 +59,23 @@ describe('The Shire University: Course Tool - Tests with Mocha', function(){
             it('Success 3. GET - Test with subject and number parameter', async function(){
                 let arr = [
                     {
-                      _id: '6417538a9d7a08526ea2fb72',
-                      subject: 'TST',
-                      number: 101,
-                      section: 'A32',
-                      crn: 90786
+                        _id: '64179c5c5310ab00c15cb9bf',
+                        subject: "TST",
+                        number: 101,
+                        name: "",
+                        description: "",
+                        credit_hours: "",
+                        crn: 90786,
+                        section: "A32",
+                        enrollment_status: "",
+                        type: "",
+                        type_code: "",
+                        start_time: "",
+                        end_time: "",
+                        days:"",
+                        room:"",
+                        building:"",
+                        instructors:""
                     }
                   ]
                 let subject = 'TST';
@@ -61,11 +86,23 @@ describe('The Shire University: Course Tool - Tests with Mocha', function(){
             it('Success 4. GET - Test with crn parameter', async function(){
                 let arr = [
                     {
-                      _id: '6417538a9d7a08526ea2fb72',
-                      subject: 'TST',
-                      number: 101,
-                      section: 'A32',
-                      crn: 90786
+                        _id: '64179c5c5310ab00c15cb9bf',
+                        subject: "TST",
+                        number: 101,
+                        name: "",
+                        description: "",
+                        credit_hours: "",
+                        crn: 90786,
+                        section: "A32",
+                        enrollment_status: "",
+                        type: "",
+                        type_code: "",
+                        start_time: "",
+                        end_time: "",
+                        days:"",
+                        room:"",
+                        building:"",
+                        instructors:""
                     }
                   ]
                 let crn = 90786;
@@ -73,6 +110,25 @@ describe('The Shire University: Course Tool - Tests with Mocha', function(){
                 deepStrictEqual(res1.data, arr);                
             });
         }); 
+        //Testing Feature 3: Registration
+        describe('PRegistration', async function(){ 
+            it('Fail 1. Test No parameter(studentId,RegType,crn)', async function(){
+                let msg = await Register();
+                strictEqual(msg, 'Invalid Parameters!');                
+            });
+            it('Fail 2. Test invalid parameter - Registration type', async function(){
+                let msg = await Register(202333445,'wrong',51248);
+                strictEqual(msg, 'Invalid registration type.');                
+            });
+            it('Success 3. Add Course', async function(){
+                let msg = await Register(202333445,'add',51248);
+                strictEqual(msg, 'Registration Successful.');                
+            });
+            it('Success 4. Drop previously added course.', async function(){
+                let msg = await Register(202333445,'drop',51248);
+                strictEqual(msg, 'Dropped Successfuly.');                
+            });
+        });
         //Testing Feature 6: Detail Button for professors
         describe('Professor Detail', async function(){     
             it('Fail 1. GET - Test invalid employee Id', async function(){

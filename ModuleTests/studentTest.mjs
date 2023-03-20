@@ -49,6 +49,6 @@ async function dropCourse(){
 }
 
 //getStudentbyId();
-getStudentbyEmail();
+//getStudentbyEmail();
 //await update();
 //dropCourse();

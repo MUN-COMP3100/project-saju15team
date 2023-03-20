@@ -56,13 +56,14 @@ export class Student{
     static async addCourse(student_id,crn){
         let collection = await _get_students_collection();
         let courseObj = await Course.get_crn(crn);
-        //console.log(courseObj);
+        let courseCredit = courseObj[0].credit_hours;
         let studentObj = await Student.findStudentByID(student_id);
         if (studentObj.registered_courses == "" || studentObj.registered_courses == null) {
             studentObj.registered_courses = [];
         }
+        let remainingCredits = studentObj[0].credits_available - courseCredit;
         studentObj.registered_courses.push(courseObj);
-        let new_vals = {$set: {'registered_courses': studentObj.registered_courses}};
+        let new_vals = {$set: {'registered_courses': studentObj.registered_courses, 'credits_available': remainingCredits}};
         let obj = await collection.updateOne({'student_id': student_id}, new_vals)
         if (obj.modifiedCount > 0){
             return 'Registration Successful.';
@@ -79,45 +80,27 @@ export class Student{
     static async drop(student_id,crn){
         let collection = await _get_students_collection();
         let studentObj = await Student.findStudentByID(student_id);
-        //let courseObj = await Course.get_crn(crn);
+        let courseObj = await Course.get_crn(crn);
+        let courseCredit = courseObj[0].credit_hours;
+        let studentCredit = studentObj[0].credits_available + courseCredit;
+        //console.log('3',studentCredit);
         let index = -1;
-        for(let i = 0; i < studentObj[0].registered_courses[0].length; i++){
+        for(let i = 0; i < studentObj[0].registered_courses.length; i++){
             console.log()
-            if(studentObj[0].registered_courses[0][0].crn == crn){
+            if(studentObj[0].registered_courses[0].crn == crn){
                 index = i;
             }
         }
-        // try{
-        //     index = studentObj[0].registered_courses.indexOf(courseObj[0]);
-        // }
-        // catch(err){
-        //     console.log(studentObj[0].registered_courses);
-        // }
         if (index > -1){
-            console.log(studentObj[0]);
-            let what = studentObj[0].registered_courses[0].splice(index,1);
-            console.log(studentObj[0]);
+            let what = studentObj[0].registered_courses.splice(index,1);
         }
-        let new_vals = {$set: {'registered_courses': studentObj[0].registered_courses}};
+        let new_vals = {$set: {'registered_courses': studentObj[0].registered_courses,'credits_available': studentCredit}};
         let obj = await collection.updateOne({'student_id': student_id}, new_vals)
         if (obj.modifiedCount > 0){
             return 'Dropped Successfuly.';
         }else{
             return 'Course not dropped';
         }
-    }
-
-    /**
-     * This method will return a student's registered courses given a student number
-     * @param {String} student_id - the student_id of the student
-     * @returns {Array} An array of Course Objects
-     */
-     async getSchedule(student_id){
-        let collection = await _get_students_collection();
-        // console.log(name)
-        let obj = await collection.find({"student_id": student_id}).toArray();
-        return obj.registered_courses;
-
     }
 
     /**
@@ -134,8 +117,4 @@ export class Student{
 
     }
 
-    static async getCourse(student_id){
-        let student = Student.findStudentByID(student_id);
-        return student.registered_courses;
-    }
 }

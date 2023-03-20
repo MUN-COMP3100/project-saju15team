@@ -6,7 +6,7 @@ app.use(json());// support json encoded bodies
 app.use(urlencoded({extended: true}));//incoming objects are strings or arrays
 
 import { add,list_all,find_crn,find_subject,find_subject_number } from './controller/courses.mjs';
-import { find_student_ID,find_student_email,add_reg_course,get_reg_courses,find_student_info,drop_reg_course } from './controller/students.mjs';
+import { find_student_ID,find_student_email,add_reg_course,find_student_info,drop_reg_course } from './controller/students.mjs';
 import { find_prof_info } from './controller/professors.mjs';
 import { connectToDB, closeDBConnection } from './utils/db.mjs';
 

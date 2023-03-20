@@ -61,23 +61,6 @@ export async function drop_reg_course(req, res) {
 }
 
 /**
- * A function that gets courses taken by a student and returns all of the courses in an array. 
- * @param {Request} req - A request Object
- * @param {Response} res - A response Object
- */
-export async function get_reg_courses(req, res) {
-    let id_to_match = req.params.student_id;
-    let objs = await Student.findStudentByID(id_to_match);
-    let arr = objs.registered_courses;
-    if (arr.length > 0){
-        console.log(arr.length+' item(s) sent.');
-        res.send(arr);        
-    }else{
-        res.send('No registered course was found');
-    }  
-}
-
-/**
  * A function that get a student by id and returns all the student info in an array
  * @param {Request} req - A request Object
  * @param {Response} res - A response Object
