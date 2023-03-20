@@ -56,14 +56,15 @@ export class Student{
     static async addCourse(student_id,crn){
         let collection = await _get_students_collection();
         let courseObj = await Course.get_crn(crn);
-        let courseCredit = courseObj[0].credit_hours;
         let studentObj = await Student.findStudentByID(student_id);
-        if (studentObj.registered_courses == "" || studentObj.registered_courses == null) {
-            studentObj.registered_courses = [];
+        let courseCredit = courseObj[0].credit_hours;
+        let courses = studentObj[0].registered_courses;
+        if (courses == "" || courses == null) {
+            courses = [];
         }
+        courses.push(courseObj[0]);
         let remainingCredits = studentObj[0].credits_available - courseCredit;
-        studentObj.registered_courses.push(courseObj);
-        let new_vals = {$set: {'registered_courses': studentObj.registered_courses, 'credits_available': remainingCredits}};
+        let new_vals = {$set: {'registered_courses': courses, 'credits_available': remainingCredits}};
         let obj = await collection.updateOne({'student_id': student_id}, new_vals)
         if (obj.modifiedCount > 0){
             return 'Registration Successful.';
@@ -83,18 +84,18 @@ export class Student{
         let courseObj = await Course.get_crn(crn);
         let courseCredit = courseObj[0].credit_hours;
         let studentCredit = studentObj[0].credits_available + courseCredit;
-        //console.log('3',studentCredit);
+        let courses = studentObj[0].registered_courses;
         let index = -1;
-        for(let i = 0; i < studentObj[0].registered_courses.length; i++){
-            console.log()
-            if(studentObj[0].registered_courses[0].crn == crn){
+        for(let i = 0; i < courses.length; i++){
+            if(courses[i].crn == crn){
                 index = i;
+                break;
             }
         }
         if (index > -1){
-            let what = studentObj[0].registered_courses.splice(index,1);
+            let newCourses = courses.splice(index,1);
         }
-        let new_vals = {$set: {'registered_courses': studentObj[0].registered_courses,'credits_available': studentCredit}};
+        let new_vals = {$set: {'registered_courses': courses,'credits_available': studentCredit}};
         let obj = await collection.updateOne({'student_id': student_id}, new_vals)
         if (obj.modifiedCount > 0){
             return 'Dropped Successfuly.';

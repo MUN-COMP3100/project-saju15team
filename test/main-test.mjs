@@ -3,6 +3,7 @@ import { searchCourses } from '../ServerFeatures/courseSearch.mjs';
 import { getProfDetails } from '../ServerFeatures/profDetail.mjs';
 import { login } from '../ServerFeatures/login.mjs';
 import { Register } from '../ServerFeatures/Registration.mjs';
+import { getSchedule } from '../ServerFeatures/courseSchedule.mjs';
 
 
 describe('The Shire University: Course Tool - Tests with Mocha', function(){
@@ -129,6 +130,24 @@ describe('The Shire University: Course Tool - Tests with Mocha', function(){
                 strictEqual(msg, 'Dropped Successfuly.');                
             });
         });
+        //Testing Feature 5: Course Schedule
+        describe('Course Schedule', async function(){
+            it('FAIL 1. Test student id', async function(){
+                let studentId = 202333446;
+                let msg = await getSchedule(studentId);
+                strictEqual(msg, 'Invalid Student Id');                
+            });
+            it('SUCCESS 2. GET - Student schedule', async function(){
+                let studentId = 202333445;
+                let schedule = [
+                    { subject: 'AAS', number: 300, days: 'TR', time: '14:00 - 15:20' },
+                    { subject: 'AAS', number: 100, days: 'F', time: '10:00 - 10:50' }
+                  ];
+                let res = await getSchedule(studentId);
+                deepStrictEqual(res, schedule);                
+            });
+
+         });
         //Testing Feature 6: Detail Button for professors
         describe('Professor Detail', async function(){     
             it('Fail 1. GET - Test invalid employee Id', async function(){

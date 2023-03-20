@@ -8,16 +8,37 @@ const instance = axios.create({
     headers: {'content-type': 'application/json'}
 });
 
-export async function searchCourses(student_id = ''){
+export async function getSchedule(student_id = ''){
     if (student_id == '') {
         return ('Invalid Parameter');
     } else {
         let res1 = await instance.get('/students/' + student_id);
-        let courses = res1.data[0].registered_courses;
-        return courses;
+        if( typeof(res1.data) == 'string'){
+            return ('Invalid Student Id');
+        }
+        else{
+            let courses = res1.data[0].registered_courses;
+            let schedule = [];
+            for (let i = 0; i < courses.length; i++) {
+                let sub = courses[i].subject;
+                let num = courses[i].number;
+                let day = courses[i].days;
+                let time = courses[i].start_time + ' - ' + courses[i].end_time;
+                
+                let detail = {
+                    subject: sub,
+                    number: num,
+                    days: day,
+                    time: time
+                };
+                schedule.push(detail);
+            }
+            
+            return schedule;
+        }
     }
 
 }
 
-let res2 = await searchCourses(202333445);
+let res2 = await getSchedule(202333445);
 console.log(res2);
