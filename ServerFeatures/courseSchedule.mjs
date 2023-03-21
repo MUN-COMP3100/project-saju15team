@@ -40,5 +40,5 @@ export async function getSchedule(student_id = ''){
 
 }
 
-let res2 = await getSchedule(202333445);
-console.log(res2);
+//let res2 = await getSchedule(202333445);
+//console.log(res2);

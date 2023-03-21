@@ -28,7 +28,7 @@
 |10|Schedule(Back-end)|Server queries database for date and time of the registered courses.|Server|Yes|arushi818|
 |11|Schedule (Front-end)|Display weekly schedule with a side bar allowing user to add desired courses;to plan their schedule prior to registering. |Client|Yes|arushi818|
 |12|FAQ Page|Acccordion (UI) with common questions and answers related to registration.|Client|Yes|Saju15|
-|13|Personal Info page(Back-end)|Update database with the personal information.|Server|Yes|arushi818|
+|13|Personal Info page(Back-end)|Display the personal information of the students.|Server|Yes|arushi818|
 |14|Custom Display|users can customize the overall look i.e dark/lighttheme, background images.|Client|Yes|Saju15|
 |15|Download Scholarship forms|User can search for available scholarships and download forms.|Server|Yes|Saju15|
 |16|Detail button|Query database and get professors' details i.e email,room availble help centres/study groups.|Server|Yes|Saju15|

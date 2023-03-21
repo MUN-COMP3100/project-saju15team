@@ -45,7 +45,7 @@ export async function Register(student_id = '', type = '' , crNum = ''){
 
 //let msg = await Register(202333445,'add',51248);
 //let msg2 = await Register(202333445,'add',75111);
-//let msg = await Register(202333445,'drop',75111);
-//let msg2 = await Register(202333445,'drop',51248);
+//let msg3 = await Register(202333445,'drop',51248);
 //console.log(msg);
 //console.log(msg2);
+//console.log(msg3);

@@ -34,5 +34,5 @@ export async function getStudentPersonalInfo(student_id) {
     }
 }
 
-let res = await getStudentPersonalInfo(202322334);
-console.log(res);
+//let res = await getStudentPersonalInfo(202322334);
+//console.log(res);
