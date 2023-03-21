@@ -31,7 +31,13 @@ Late Submission: Monday
 1. To run : after the database in initiated successfuly, run 'node app.mjs' command in the terminal.
 2. To shutdown: after the test, press 'ctrl + c' to close the connection/ server.
 
-###### Mocha Test:
+##### Mocha Test:
+###### Before using mocha test do the following:
+  - Go to *Registrations.mjs* inside the *SeverFeatures* folder.
+  - Uncomment line# 46 and 47 and run the program by command -> node Registration.mjs
+  - This will add 2 courses to a student, in order for the scourse schedule feature to work.
+  - Comment the lines again - very important
+and then,
 1. 'main-test.mjs' inside the test folder implements mocha tests for all 6 features.
 2. To run the test, start the server and type the following command in the terminal(root folder) --> npm test
 3. Features can be also tested seperately. (read Description section.)
@@ -87,9 +93,10 @@ Late Submission: Monday
 and then use Mocha test (*main_test.mjs) to test for invalid input and getting schedule successfully. To test the individual feature,start the server and open the terminal at the *SeverFeatures* folder. Uncomment line #43-44 and run command *node courseSchedule.mjs*. 
 ##### Important: comment the lines again, if mocha test is done after the individual test.
 
-###### Feature #6: Detail page
-1. Description - 
-2. Implementation Strategy - 
-3. Dependencies - 
-4. State of the Implementation - 
-5. How to test - 
+###### Feature #6: Detail page(Button)
+1. Description - This feature allows students to view detailed information about a particular professor.
+2. Implementation Strategy - The professor information is stored in a database and retrieved to display on the detail page. The detail page displays information such as the professor's name, email, office , and department.
+3. Dependencies - *Professor* class 
+4. State of the Implementation - Complete
+5. How to test - use Mocha test (*main_test.mjs) to test for invalid input and getting info successfully. To test the individual feature,start the server and open the terminal at the *SeverFeatures* folder. Uncomment line #38-39 and run command *node profDetail.mjs*. 
+##### Important: comment the lines again, if mocha test is done after the individual test.
