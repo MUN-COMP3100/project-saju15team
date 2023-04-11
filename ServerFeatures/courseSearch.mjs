@@ -64,7 +64,7 @@ export async function searchCourses(subject = '', number = '', crn = ''){
 };
 
 //searchCourses();
-//let res1 = await searchCourses('TST');
+//let res1 = await searchCourses('ABE');
 //console.log(res1.data);
 //searchCourses('ABE',532);
 //searchCourses('','',41758);
