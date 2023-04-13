@@ -11,27 +11,11 @@ const instance = axios.create({
 export async function Register(student_id = '', type = '' , crNum = ''){
     if(student_id != '' && type != '' && crNum != '') {
         if (type.toLowerCase() == 'add'){
-            let student = await instance.get('/students/' + student_id);
-            let course = await instance.get('/fall/' + crNum);
-            let availableCredits = student.data[0].credits_available;
-            //console.log(availableCredits);
-            let courseCredit = course.data[0].credit_hours;
-            //console.log(courseCredit);
-            if (availableCredits >= courseCredit) {
-                let data1 = {
-                    crn: crNum
-                }
-                let res2 = await instance.put('/students3/'+ student_id, data1);
+                let res2 = await instance.put('/students3/'+ student_id + '/' + crNum + '/add');
                 return res2.data;
-            } else {
-                return ('Not enough credit hours.');
-            }
     
         } else if (type.toLowerCase() == 'drop') {
-            let data1 = {
-                crn: crNum
-            }
-            let res1 = await instance.put('/students4/'+ student_id, data1);
+            let res1 = await instance.put('/students3/'+ student_id + '/' + crNum + '/drop');
            return res1.data;
         } else {
             return ('Invalid registration type.');
