@@ -56,27 +56,42 @@ export class Student{
     static async addCourse(student_id,crn){
         let collection = await _get_students_collection();
         let courseObj = await Course.get_crn(crn);
+        if (courseObj.length < 1) {
+            return 'Cannot find the course!';
+        }
         let studentObj = await Student.findStudentByID(student_id);
         let creditsAvailable = studentObj[0].credits_available;
-        console.log(courseObj);
+        let courses = studentObj[0].registered_courses;
         let courseCredit = courseObj[0].credit_hours;
-        if (creditsAvailable >= courseCredit){
-            let courses = studentObj[0].registered_courses;
-            if (courses == "" || courses == null) {
-                courses = [];
+        let registered = false;
+        for(let i = 0; i < courses.length; i++){
+            if(courses[i].crn == crn){
+                registered = true;
             }
-            courses.push(courseObj[0]);
-            let remainingCredits = creditsAvailable - courseCredit;
-            let new_vals = {$set: {'registered_courses': courses, 'credits_available': remainingCredits}};
-            let obj = await collection.updateOne({'student_id': student_id}, new_vals)
-            if (obj.modifiedCount > 0){
-                return 'Registration Successful.';
-            }else{
-                return 'Registration Failed';
-            }
-        }else {
-            return 'You do not have enough credits to register for this course!';
-        }    
+        }
+        //console.log('1',registered);
+        if (registered == false) {
+            if (creditsAvailable >= courseCredit){
+                let courses = studentObj[0].registered_courses;
+                if (courses == "" || courses == null) {
+                    courses = [];
+                }
+                courses.push(courseObj[0]);
+                let remainingCredits = creditsAvailable - courseCredit;
+                let new_vals = {$set: {'registered_courses': courses, 'credits_available': remainingCredits}};
+                let obj = await collection.updateOne({'student_id': student_id}, new_vals)
+                if (obj.modifiedCount > 0){
+                    return 'Registration Successful.';
+                }else{
+                    return 'Registration Failed';
+                }
+            }else {
+                return 'You do not have enough credits to register for this course!';
+            } 
+        } else {
+            return 'You have aready registered for this course!';
+        }
+   
     }
     /**
      * This method will drop a course with the specified
@@ -88,6 +103,9 @@ export class Student{
         let collection = await _get_students_collection();
         let studentObj = await Student.findStudentByID(student_id);
         let courseObj = await Course.get_crn(crn);
+        if (courseObj.length < 1) {
+            return 'Cannot find the course!';
+        }
         let courseCredit = courseObj[0].credit_hours;
         let studentCredit = studentObj[0].credits_available + courseCredit;
         let courses = studentObj[0].registered_courses;
@@ -100,6 +118,8 @@ export class Student{
         }
         if (index > -1){
             let newCourses = courses.splice(index,1);
+        } else {
+            return 'You are not registered for this course!';
         }
         let new_vals = {$set: {'registered_courses': courses,'credits_available': studentCredit}};
         let obj = await collection.updateOne({'student_id': student_id}, new_vals)
