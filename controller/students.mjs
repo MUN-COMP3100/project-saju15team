@@ -32,29 +32,28 @@ export async function find_student_email(req, res) {
     }
 }
 
-/**
- * A function to add course
- * @param {Request} req - A request Object
- * @param {Response} res - A response Object
- */
-export async function add_reg_course(req, res) {
-    let id_to_match = parseInt(req.params.student_id);
-    let crn_to_match = parseInt(req.body.crn);
-    let msg = await Student.addCourse(id_to_match,crn_to_match);
-    //console.log(id_to_match);
-    res.send(msg);  
- 
-}
+
 
 /**
- * A function to add course
+ * A function to add or drop course
  * @param {Request} req - A request Object
  * @param {Response} res - A response Object
  */
-export async function drop_reg_course(req, res) {
+export async function add_drop_course(req, res) {
     let id_to_match = parseInt(req.params.student_id);
-    let crn_to_match = parseInt(req.body.crn);
-    let msg = await Student.drop(id_to_match,crn_to_match);
+    let crn_to_match = parseInt(req.params.crn);
+    let type = req.params.type;
+    let msg = "";
+    if (type == 'add') {
+        msg = await Student.addCourse(id_to_match,crn_to_match);
+    }
+    else if (type == 'drop') {
+        msg = await Student.drop(id_to_match,crn_to_match);
+    } 
+    else {
+        msg = "Inavlid Registration Type";
+    }
+    
     //console.log(id_to_match);
     res.send(msg);  
  
