@@ -5,7 +5,7 @@ const port = 3000;
 app.use(bodyParser.json()); // support json encoded bodies
 
 import { add,list_all,find_crn,find_subject,find_subject_number } from './controller/courses.mjs';
-import { find_student_ID,find_student_email,find_student_info,verifyLoginCredentials, add_drop_course } from './controller/students.mjs';
+import { find_student_ID,find_student_email,find_student_info,verifyLoginCredentials, add_drop_course, get_reg_courses } from './controller/students.mjs';
 import { find_prof_info } from './controller/professors.mjs';
 import { get_faq } from './controller/faq.mjs';
 import { connectToDB, closeDBConnection } from './utils/db.mjs';
@@ -41,6 +41,7 @@ app.get('/fall2/:subject/:number', find_subject_number);
 app.get('/students/:student_id',find_student_ID);
 app.get('/students1/:student_id',find_student_info);
 app.get('/students2/:email',find_student_email);
+app.get('/students6/:student_id',get_reg_courses);
 app.get('/students3/:email/:password',verifyLoginCredentials);
 app.put('/students3/:student_id/:crn/:type', add_drop_course);
 //professor API

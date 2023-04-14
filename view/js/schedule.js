@@ -1,9 +1,11 @@
 $(document).ready (function(){
 
+
     $("#get-schedule-btn").click(function(event){
+        let studentId = $("student-id").val();
         event.preventDefault();
         $.ajax({
-            url: 'http://127.0.0.1:3000/student6/' + schedule.toUpperCase(),
+            url: 'http://127.0.0.1:3000/students6/' + studentId,
             type: 'GET',
             contentType: 'application/json',
             success: function(response) {
@@ -44,7 +46,7 @@ $(document).ready (function(){
                for (let i = startTime; i < endTime; i++) {
                let rowIndex = i - 8;
                let cell = table.rows[rowIndex].cells[dayIndex+1];
-               cell.innerHTML += course.name + "<br>" + course.location + "<br>" + course.prof + "<br>";
+               cell.innerHTML += course.name + "<br>" + course.room + "<br>" + course.instructor + "<br>";
                 }
             }
 
