@@ -90,10 +90,10 @@ margin-bottom: 10px;
     padding: 10px; 
   }
   
-  .answer {
+  /* .answer {
     display: none; 
     padding: 10px; 
-  }
+  } */
   
   .answer.show {
     display: block; 
