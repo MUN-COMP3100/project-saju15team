@@ -2,7 +2,6 @@ $(document).ready (function(){
 
     $("#get-schedule-btn").click(function(event){
         event.preventDefault();
-        let schedule = $("#schedule").val();
         $.ajax({
             url: 'http://127.0.0.1:3000/student6/' + schedule.toUpperCase(),
             type: 'GET',
