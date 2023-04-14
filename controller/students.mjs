@@ -92,3 +92,19 @@ export async function verifyLoginCredentials(req, res) {
         res.send('invalid credentials!');
     }  
     }
+
+/**
+ * A function that gets the courses a student is registered for in the form of an Array of course objects
+ * @param {Request} req - A request Object
+ * @param {Response} res - A response Object
+ */
+export async function get_reg_courses(req, res) {
+    let id_to_match = parseInt(req.params.student_id);
+    let obj = await Student.getRegisteredCourses(id_to_match);
+    if (obj.length > 0){
+        console.log(obj.length+ ' courses retrieved!');
+        res.send(obj);        
+    }else{
+        res.send('No registered courses');
+    }  
+}

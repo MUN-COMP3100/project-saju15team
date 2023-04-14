@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Shire University</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <script>
+        // Loop through each hour from 9am to 8pm
+        for (var i = 9; i <= 20; i++) {
+          // Create a new row
+          var row = document.createElement("tr");
+
+          // Create a cell for the hour label
+          var hourCell = document.createElement("td");
+          hourCell.innerHTML = i + ":00";
+          row.appendChild(hourCell);
+
+          // Create cells for each day of the week
+          for (var j = 0; j < 5; j++) {
+            var cell = document.createElement("td");
+            row.appendChild(cell);
+          }
+
+          // Add the row to the table
+          document.getElementById("myTable").appendChild(row);
+        }
+      </script>
+    </tbody>
+  </table>
+</body>
+<script src="../js/search.js"></script>
+</html>
