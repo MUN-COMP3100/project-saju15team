@@ -13,15 +13,15 @@ export async function login(email = '',pw = ''){
         return('Inputs cannot be blank.');
     }
     else {
-        let res1 = await instance.get('/students3/' + email.toLowerCase() + '/' + pw.toLowerCase());
+        let res1 = await instance.get('/students3/' + email.toLowerCase() + '/' + pw);//.toLowerCase());
         return res1.data;
-        // if (res1.data == 'student not found'){
-        //     return('User not found.');
-        // } else if (res1.data[0].password != pw){
-        //     return('Password does not match.');
-        // } else {
-        //     return("Login Successful!");
-        // }
+         /*if (res1.data == 'student not found'){
+             return('User not found.');
+         } else if (res1.data[0].password.toLowerCase() != pw){
+             return('Password does not match.');
+         } else {
+             return("Login Successful!");
+         }*/
     }
 
 }

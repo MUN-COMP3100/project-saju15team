@@ -152,8 +152,14 @@ export class Student{
      */
        static async matchLoginCredentials(email,password){
         let collection = await _get_students_collection();
-        let obj = await collection.find({"email": email, "password":password});
-        return ((obj.password == password) && (obj.email == email));
+        let obj = await collection.find({"email": 'triddle@hogwarts.ca', "password":'avadaKEDavra'}).toArray();
+        if(obj.length > 0){
+            return obj.student_id;
+        }
+        else{
+            return false;
+        }
+        
       }
     
     /**
