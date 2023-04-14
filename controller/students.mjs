@@ -83,10 +83,17 @@ export async function find_student_info(req, res) {
 export async function verifyLoginCredentials(req, res) {
     let password_to_match = req.params.password;
     let email_to_match = req.params.email;
-
+    //console.log('2',email_to_match);
+    //console.log('3',password_to_match);
     let obj = await Student.matchLoginCredentials(email_to_match, password_to_match);
-        res.send(obj);      
+    //console.log(obj);
+    if (obj.length > 0) {
+        res.send(obj[0].student_id.toString()); 
+    } else {
+        res.send('Invalid Credentials!');
     }
+         
+}
 
 /**
  * A function that gets the courses a student is registered for in the form of an Array of course objects
