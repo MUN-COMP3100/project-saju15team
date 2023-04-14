@@ -24,10 +24,9 @@ export class Professor{
      * @param {String} employeeID - the employeeID of the professor
      * @returns {Array} An array containing the student's name, office, department, email
      */
-    static async getProfInfo(employeeID){
+    static async getProfInfo(email){
         let collection = await _get_professors_collection();
-        // console.log(name)
-        let obj = await collection.find({"employee_id": employeeID}).toArray();
+        let obj = await collection.find({"email": email}).toArray();
         return obj;
 
     }

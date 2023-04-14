@@ -40,7 +40,7 @@ app.get('/students/:student_id',find_student_ID);
 app.get('/students2/:email',find_student_email);
 app.put('/students3/:student_id/:crn/:type', add_drop_course);
 //professor API
-app.get('/professors/:employee_id',find_prof_info);
+app.get('/professors/:email',find_prof_info);
 
 server = app.listen(port, () => {
   console.log('Example app listening at http://localhost:%d', port);
