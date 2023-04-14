@@ -10,9 +10,6 @@ $(document).ready (function(){
             contentType: 'application/json',
             success: function(response) {
                  let data = response; // Assuming response is an array of objects
-                //console.log(data);
-                //console.log('2',data === 'No course was found');
-
                 // Check if data is empty 
                 if (!data || (typeof data === 'string' && data === "No registered courses")) {
                     $("#get-out").html("No registered courses were found.");
@@ -22,12 +19,14 @@ $(document).ready (function(){
 
                    // Create table header with days of the week
                    for (let day of daysOfWeek) {
+                    console.log(day);
                    table += "<th>" + day + "</th>";
                    }
                    table += "</tr>";
 
                    // Create table rows for each hour from 8am to 5pm
                    for (let i = 8; i <= 17; i++) {
+                    console.log(i);
                    table += "<tr><td>" + i + ":00</td>";
 
                   // Create table columns for each day of the week
@@ -39,6 +38,7 @@ $(document).ready (function(){
 
                // Place course objects in the table with the column and row matching day and time of the course object
                for (let course of data) {
+                console.log(course);
                let startTime = parseInt(course.start_time.slice(0,2));
                let endTime = parseInt(course.end_time.slice(0,2));
                let dayIndex = daysOfWeek.indexOf(course.days);
