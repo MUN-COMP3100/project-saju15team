@@ -1,5 +1,7 @@
 $(document).ready (function(){
 
+    $("#get-schedule-btn").click(function(event){
+        event.preventDefault();
         let schedule = $("#schedule").val();
         $.ajax({
             url: 'http://127.0.0.1:3000/student6/' + schedule.toUpperCase(),
@@ -14,54 +16,46 @@ $(document).ready (function(){
                 if (!data || (typeof data === 'string' && data === "No registered courses")) {
                     $("#get-out").html("No registered courses were found.");
                 } else {
-                    
-                    let table = $("<table>");
-                    
-                    // Create table header row
-                    let headerRow = $("<tr>");
-                    headerRow.append("<th>Subject</th>");
-                    headerRow.append("<th>Number</th>");
-                    headerRow.append("<th>Name</th>");
-                    headerRow.append("<th>Description</th>");
-                    headerRow.append("<th>Credit Hours</th>");
-                    headerRow.append("<th>CRN</th>");
-                    headerRow.append("<th>Section</th>");
-                    headerRow.append("<th>Type</th>");
-                    headerRow.append("<th>Start Time</th>");
-                    headerRow.append("<th>End Time</th>");
-                    headerRow.append("<th>Days</th>");
-                    headerRow.append("<th>Room</th>");
-                    headerRow.append("<th>Instructors</th>");
-                
-                    table.append(headerRow);
-                
-                    // Loop through the data array and create table rows
-                    for (let i = 0; i < data.length; i++) {
-                        let rowData = data[i];
-                        let row = $("<tr>");
-                        row.append("<td>" + rowData.subject + "</td>");
-                        row.append("<td>" + rowData.number + "</td>");
-                        row.append("<td>" + rowData.name + "</td>");
-                        row.append("<td>" + rowData.description + "</td>");
-                        row.append("<td>" + rowData.credit_hours + "</td>");
-                        row.append("<td>" + rowData.crn + "</td>");
-                        row.append("<td>" + rowData.section + "</td>");
-                        row.append("<td>" + rowData.type + "</td>");
-                        row.append("<td>" + rowData.start_time + "</td>");
-                        row.append("<td>" + rowData.end_time + "</td>");
-                        row.append("<td>" + rowData.days + "</td>");
-                        row.append("<td>" + rowData.room + "</td>");
-                        row.append("<td>" + rowData.instructors + "</td>");
-                
-                        table.append(row);
-                    }
+                   let daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+                   let table = "<table><tr><th>Time</th>";
 
-                    $("#get-out").html(table);
+                   // Create table header with days of the week
+                   for (let day of daysOfWeek) {
+                   table += "<th>" + day + "</th>";
+                   }
+                   table += "</tr>";
+
+                   // Create table rows for each hour from 8am to 5pm
+                   for (let i = 8; i <= 17; i++) {
+                   table += "<tr><td>" + i + ":00</td>";
+
+                  // Create table columns for each day of the week
+                  for (let day of daysOfWeek) {
+                  table += "<td></td>";
+                  }
+                  table += "</tr>";
                 }
-            },                   
+
+               // Place course objects in the table with the column and row matching day and time of the course object
+               for (let course of data) {
+               let startTime = parseInt(course.start_time.slice(0,2));
+               let endTime = parseInt(course.end_time.slice(0,2));
+               let dayIndex = daysOfWeek.indexOf(course.days);
+
+               for (let i = startTime; i < endTime; i++) {
+               let rowIndex = i - 8;
+               let cell = table.rows[rowIndex].cells[dayIndex+1];
+               cell.innerHTML += course.name + "<br>" + course.location + "<br>" + course.prof + "<br>";
+                }
+            }
+
+        $("#get-out").html(table);
+                  
+            }},                   
             error: function(xhr, status, error){
                 var errorMessage = xhr.status + ': ' + xhr.statusText
                 alert('Error - ' + error);
             }
         });
     });
+});
