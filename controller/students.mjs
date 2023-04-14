@@ -75,3 +75,21 @@ export async function find_student_info(req, res) {
         res.send('student not found');
     }  
 }
+
+/**
+ * A function that verifies student login 
+ * @param {Request} req - A request Object
+ * @param {Response} res - A response Object
+ */
+export async function verifyLoginCredentials(req, res) {
+    let password_to_match = req.params.password;
+    let email_to_match = req.params.email;
+
+    let obj = await Student.matchLoginCredentials(email_to_match, password_to_match);
+    if (obj == true){
+        console.log(obj+' student logged in!');
+        res.send(obj);        
+    }else{
+        res.send('invalid credentials!');
+    }  
+    }

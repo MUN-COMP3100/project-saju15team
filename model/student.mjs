@@ -117,5 +117,18 @@ export class Student{
         return [obj.first_name, obj.last_name,obj.student_id, obj.email, obj.address, obj.mobile];
 
     }
+       /**
+     * This method will check if a student's password and email 
+     * match the ones passed in as parameters
+     * @param {String} email - the email entered
+     * @param {String} password - the password entered
+     * @returns {Boolean} - A boolean indicating whether the parameter matches the student fields
+     */
+       static async matchLoginCredentials(email,password){
+        let collection = await _get_students_collection();
+        let obj = await collection.find({"email": email, "password":password});
+        return ((obj.password == password) && (obj.email == email));
+      }
+    
 
 }
