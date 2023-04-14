@@ -46,7 +46,7 @@ $(document).ready (function(){
                for (let i = startTime; i < endTime; i++) {
                let rowIndex = i - 8;
                let cell = table.rows[rowIndex].cells[dayIndex+1];
-               cell.innerHTML += course.name + "<br>" + course.room + "<br>" + course.instructor + "<br>";
+               cell.innerHTML += course.name + "<br>" + course.room  + "<br>" + course.instructor + "<br>";
                 }
             }
 
