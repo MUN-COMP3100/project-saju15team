@@ -17,7 +17,7 @@ $(document).ready (function(){
                     $("#get-out").html("No courses were found.");
                 } else {
                     
-                    let table = $("<table>");
+                    let table = $('<table class = "table-container">');
                     
                     // Create table header row
                     let headerRow = $("<tr>");

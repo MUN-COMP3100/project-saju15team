@@ -46,7 +46,7 @@ app.put('/students5/:student_id', drop_reg_course);
 app.put('/students6/:schedule', get_reg_courses );
 
 //professor API
-app.get('/professors/:employee_id',find_prof_info);
+app.get('/professors/:email',find_prof_info);
 
 server = app.listen(port, () => {
   console.log('Example app listening at http://localhost:%d', port);
