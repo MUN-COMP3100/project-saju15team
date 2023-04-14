@@ -164,8 +164,9 @@ export class Student{
      */
            static async getRegisteredCourses(student_id){
             let collection = await _get_students_collection();
-            let obj = await collection.find({"student_id": student_id});
-            return obj.registered_courses;
+            let obj = await collection.find({"student_id": student_id}).toArray();
+            console.log(obj);
+            return obj;
           }
 
 }

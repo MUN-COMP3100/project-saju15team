@@ -12,7 +12,7 @@ export async function getSchedule(student_id = ''){
     if (student_id == '') {
         return ('Invalid Parameter');
     } else {
-        let res1 = await instance.get('/students/' + student_id);
+        let res1 = await instance.get('/students6/' + student_id);
         if( typeof(res1.data) == 'string'){
             return ('Invalid Student Id');
         }
