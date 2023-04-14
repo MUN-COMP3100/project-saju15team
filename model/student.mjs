@@ -156,5 +156,15 @@ export class Student{
         return ((obj.password == password) && (obj.email == email));
       }
     
+    /**
+     * This method will return an array of registered courses for a student, given the student id 
+     * @param {String} student_id - the student id
+     * @returns {Array} - An array of Course objects
+     */
+           static async getRegisteredCourses(student_id){
+            let collection = await _get_students_collection();
+            let obj = await collection.find({"student_id": student_id});
+            return obj.registered_courses;
+          }
 
 }
