@@ -74,6 +74,30 @@ margin-bottom: 10px;
     background-color: #f2f2f2; 
 }
 
+/* FAQ */
+#faq-container {
+    max-width: 600px; 
+    margin: 0 auto; 
+  }
+  
+  .faq-item {
+    margin-bottom: 10px; 
+  }
+  
+  .question {
+    cursor: pointer; 
+    background-color: #f0f0f0; 
+    padding: 10px; 
+  }
+  
+  .answer {
+    display: none; 
+    padding: 10px; 
+  }
+  
+  .answer.show {
+    display: block; 
+  }
   
   
   
