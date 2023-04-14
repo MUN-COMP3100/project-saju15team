@@ -13,17 +13,18 @@ export async function login(email = '',pw = ''){
         return('Inputs cannot be blank.');
     }
     else {
-        let res1 = await instance.get('/students2/' + email);
-        if (res1.data == 'student not found'){
-            return('User not found.');
-        } else if (res1.data[0].password != pw){
-            return('Password does not match.');
-        } else {
-            return("Login Successful!");
-        }
+        let res1 = await instance.get('/students3/' + email.toLowerCase() + '/' + pw.toLowerCase());
+        return res1.data;
+        // if (res1.data == 'student not found'){
+        //     return('User not found.');
+        // } else if (res1.data[0].password != pw){
+        //     return('Password does not match.');
+        // } else {
+        //     return("Login Successful!");
+        // }
     }
 
 }
 
-//let msg = await login('triddle@hogwarts.ca','avadaKEDavra');
-//console.log(msg);
+let msg = await login('triddle@hogwarts.ca','avadaKEDavra');
+console.log(msg);
