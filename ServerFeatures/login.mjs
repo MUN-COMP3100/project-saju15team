@@ -13,7 +13,7 @@ export async function login(email = '',pw = ''){
         return('Inputs cannot be blank.');
     }
     else {
-        let res1 = await instance.get('/students3/' + email.toLowerCase() + '/' + pw.toLowerCase());
+        let res1 = await instance.get('/students3/' + email + '/' + pw);
         return res1.data;
          /*if (res1.data == 'student not found'){
              return('User not found.');
@@ -27,4 +27,4 @@ export async function login(email = '',pw = ''){
 }
 
 let msg = await login('triddle@hogwarts.ca','avadaKEDavra');
-console.log(msg);
+console.log('1',msg);
