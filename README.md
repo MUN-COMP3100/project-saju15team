@@ -11,6 +11,9 @@ Late Submission: Monday
 - mongoimport --db=course_catalog --type=csv --headerline --collection=students students.csv
 - mongoimport --db=course_catalog --type=csv --headerline --collection=professors professors.csv
 
+### Link to Demonstration Video: 
+[Drive Link](https://drive.google.com/file/d/1o2_zaCm0DHubTf7-2G0o2MDzRDlvJcyf/view?usp=sharing)
+
 #### Program Architecture:
 
 #### Server side
@@ -30,17 +33,6 @@ Late Submission: Monday
 ###### How to run/shutdown the Server:
 1. To run : after the database in initiated successfuly, run 'node app.mjs' command in the terminal.
 2. To shutdown: after the test, press 'ctrl + c' to close the connection/ server.
-
-##### Mocha Test:
-###### Before using mocha test do the following:
-  - Go to *Registrations.mjs* inside the *SeverFeatures* folder.
-  - Uncomment line# 46 and 47 and run the program by command -> node Registration.mjs
-  - This will add 2 courses to a student, in order for the scourse schedule feature to work.
-  - Comment the lines again - very important
-and then,
-1. 'main-test.mjs' inside the test folder implements mocha tests for all 6 features.
-2. To run the test, start the server and type the following command in the terminal(root folder) --> npm test
-3. Features can be also tested seperately. (read Description section.)
 
 
 #### Feature Description:

@@ -1,5 +1,3 @@
-let globalStudentId;
-
 $(document).ready (function(){
 
     $("#login-button").click(function(event){
@@ -15,7 +13,6 @@ $(document).ready (function(){
                 console.log('1', data);
                 if (Number.isInteger(Number(data))) { // Check if data is an integer
                     // Redirect to main.html
-                    globalStudentId = Number(data);
                     window.location.href = '../html/main.html';
                 } else {
                     // Print data to get-out
