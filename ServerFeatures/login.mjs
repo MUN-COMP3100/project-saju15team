@@ -26,5 +26,5 @@ export async function login(email = '',pw = ''){
 
 }
 
-let msg = await login('triddle@hogwarts.ca','avadaKEDavra');
+let msg = await login('triddle@hogwarts.ca','avaaKEDavra');
 console.log('1',msg);

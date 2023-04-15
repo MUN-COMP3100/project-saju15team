@@ -5,19 +5,18 @@ $(document).ready (function(){
         let email = $("#email").val();
         let password = $("#password").val();
         $.ajax({
-            url: 'http://127.0.0.1:3000/students3/' + email.toUpperCase() + password.toUpperCase(),
+            url: 'http://127.0.0.1:3000/students3/' + email + '/' + password,
             type: 'GET',
             contentType: 'application/json',
             success: function(response) {
-                let data = response; // Assuming response is an array of objects
-                //console.log(data);
-                //console.log('2',data === 'No course was found');
-
-                // Check if data is empty 
-                if ((typeof data === 'string' && data === "invalid credentials!")) {
-                    $("#get-out").html("invalid credential!");
+                let data = response;
+                console.log('1', data);
+                if (Number.isInteger(Number(data))) { // Check if data is an integer
+                    // Redirect to main.html
+                    window.location.href = '../html/main.html';
                 } else {
-                    localStorage.setItem("token",data.password);//should have been data.token    
+                    // Print data to get-out
+                    $("#get-out").html("<p>" + data + "</p>");
                 }
             },                   
             error: function(xhr, status, error){
