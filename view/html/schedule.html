@@ -15,16 +15,21 @@
     </nav>
     <h3>Course Schedule</h3>
     <div>
-        <form class="form-container">
-            <label for = "get-student-id"> Student ID: </label>
-            <input type="text"  id="student-id">
-            <div>
-                <button id="get-schedule-btn">Get Schedule</button></br></br>
-                <output id="get-out"></output>
-            </div>
-        </form>
+      <form class="form-container">
+        <label for="student-id">Student ID:</label>
+        <input type="text" id="student-id">
+        <div>
+          <button id="get-schedule-btn">Get Schedule</button><br><br>
+          <output id="get-out"></output>
+        </div>
+      </form>
     </div>
+    <table id="calendar-table">
+      <tbody id="calendar-body">
+        <!-- Calendar body will be populated dynamically with course data -->
+      </tbody>
+    </table>
 
-    <script src="../js/search.js"></script>
+    <script src="../js/schedule.js"></script>
 </body>
 

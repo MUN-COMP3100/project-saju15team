@@ -105,7 +105,7 @@ export async function get_reg_courses(req, res) {
     let obj = await Student.getRegisteredCourses(id_to_match);
     if (obj.length > 0){
         console.log(obj.length+ ' courses retrieved!');
-        res.send(obj);        
+        res.send(obj[0].registered_courses);        
     }else{
         res.send('No registered courses');
     }  

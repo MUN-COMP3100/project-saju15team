@@ -17,24 +17,24 @@ export async function getSchedule(student_id = ''){
             return ('Invalid Student Id');
         }
         else{
-            let courses = res1.data[0].registered_courses;
-            let schedule = [];
-            for (let i = 0; i < courses.length; i++) {
-                let sub = courses[i].subject;
-                let num = courses[i].number;
-                let day = courses[i].days;
-                let time = courses[i].start_time + ' - ' + courses[i].end_time;
+            // let courses = res1.data[0].registered_courses;
+            // let schedule = [];
+            // for (let i = 0; i < courses.length; i++) {
+            //     let sub = courses[i].subject;
+            //     let num = courses[i].number;
+            //     let day = courses[i].days;
+            //     let time = courses[i].start_time + ' - ' + courses[i].end_time;
                 
-                let detail = {
-                    subject: sub,
-                    number: num,
-                    days: day,
-                    time: time
-                };
-                schedule.push(detail);
-            }
+            //     let detail = {
+            //         subject: sub,
+            //         number: num,
+            //         days: day,
+            //         time: time
+            //     };
+            //     schedule.push(detail);
+            //}
             
-            return schedule;
+            return res1.data;
         }
     }
 

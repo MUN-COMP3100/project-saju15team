@@ -1,62 +1,73 @@
-$(document).ready (function(){
-
-
-    $("#get-schedule-btn").click(function(event){
-        let studentId = $("student-id").val();
-        event.preventDefault();
-        $.ajax({
-            url: 'http://127.0.0.1:3000/students6/' + studentId,
-            type: 'GET',
-            contentType: 'application/json',
-            success: function(response) {
-                 let data = response; // Assuming response is an array of objects
-                // Check if data is empty 
-                if (!data || (typeof data === 'string' && data === "No registered courses")) {
-                    $("#get-out").html("No registered courses were found.");
-                } else {
-                   let daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-                   let table = "<table><tr><th>Time</th>";
-
-                   // Create table header with days of the week
-                   for (let day of daysOfWeek) {
-                    console.log(day);
-                   table += "<th>" + day + "</th>";
-                   }
-                   table += "</tr>";
-
-                   // Create table rows for each hour from 8am to 5pm
-                   for (let i = 8; i <= 17; i++) {
-                    console.log(i);
-                   table += "<tr><td>" + i + ":00</td>";
-
-                  // Create table columns for each day of the week
-                  for (let day of daysOfWeek) {
-                  table += "<td></td>";
-                  }
-                  table += "</tr>";
-                }
-
-               // Place course objects in the table with the column and row matching day and time of the course object
-               for (let course of data) {
-                console.log(course);
-               let startTime = parseInt(course.start_time.slice(0,2));
-               let endTime = parseInt(course.end_time.slice(0,2));
-               let dayIndex = daysOfWeek.indexOf(course.days);
-
-               for (let i = startTime; i < endTime; i++) {
-               let rowIndex = i - 8;
-               let cell = table.rows[rowIndex].cells[dayIndex+1];
-               cell.innerHTML += course.name + "<br>" + course.room  + "<br>" + course.instructor + "<br>";
-                }
+$(document).ready(function() {
+    $("#get-schedule-btn").click(function(event) {
+      event.preventDefault();
+      let studentId = $("#student-id").val();
+      $.ajax({
+        url: 'http://127.0.0.1:3000/students6/' + studentId,
+        type: 'GET',
+        contentType: 'application/json',
+        success: function(response) {
+            let data = response;
+            console.log('1', data);
+        
+            // Create a table element dynamically
+            let table = $("<table></table>");
+        
+            // Create table headers for days of the week
+            let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            let headerRow = $("<tr></tr>");
+            for (let i = 0; i < days.length; i++) {
+                headerRow.append("<th>" + days[i] + "</th>");
             }
-
-        $("#get-out").html(table);
-                  
-            }},                   
-            error: function(xhr, status, error){
-                var errorMessage = xhr.status + ': ' + xhr.statusText
-                alert('Error - ' + error);
+            table.append(headerRow);
+        
+            // Create table rows for each course
+            for (let i = 0; i < data.length; i++) {
+                let course = data[i];
+        
+                // Create a new row for each course
+                let row = $("<tr></tr>");
+        
+                // Loop through each day in the 'days' attribute of the course object
+                // and create a cell with course details for each corresponding day
+                for (let j = 0; j < days.length; j++) {
+                    let day = days[j];
+        
+                    // Check if the course is offered on the current day
+                    if (course.days.indexOf(day.charAt(0)) !== -1) {
+        
+                        // Create a cell for the course with its details
+                        let cell = $("<td></td>");
+                        cell.text(course.subject + ' ' + course.number + ' - ' + course.start_time + ' to ' + course.end_time);
+                        row.append(cell);
+        
+                        // Add a class to the cell to indicate the day of the week
+                        cell.addClass(day);
+                    } else {
+                        // Create an empty cell for days where the course is not offered
+                        row.append("<td></td>");
+                    }
+                }
+        
+                table.append(row);
             }
-        });
+        
+            // Append the table to the output element
+            $("#get-out").html(table);
+        }
+        ,
+        error: function(xhr, status, error) {
+          var errorMessage = xhr.status + ': ' + xhr.statusText
+          alert('Error - ' + error);
+        }
+      });
     });
-});
+  
+    // Helper function to get day abbreviation based on index (0 for Monday, 1 for Tuesday, etc.)
+    function getDayAbbreviation(index) {
+      let days = ['M', 'T', 'W', 'R', 'F'];
+      return days[index];
+    }
+  });
+  
+  
