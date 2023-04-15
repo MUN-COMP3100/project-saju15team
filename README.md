@@ -43,6 +43,47 @@ and then,
 3. Features can be also tested seperately. (read Description section.)
 
 
+####Server-side Feature Description:
+
+###### Feature #1: Login
+1. Description - This feature allows students to log in to the system using their credentials, i.e. their university email and password.
+2. Implementation Strategy - The html labels allow students to enter their email and password in the appropriate labels. The credentials are then sent to the server side for validation. If the credentials are valid, the student is logged in and directed to the dashboard. If not, the user is notified of the error
+3. Dependencies - *login.html* file and *login.js* file.
+4. State of the Implementation - Completed
+
+
+
+###### Feature #2: Course Search
+1. Description - This feature allows students to search for courses by crn, subject and number.
+2. Implementation Strategy - The html labels allow the user to input a course name, number or crn. The data is then sent to the server side to retrieve the course. If the course is found, its details are displayed, if not,the user is notified that the course could not be found
+3. Dependencies - *search.js* file and *search.html* file.
+4. State of the Implementation - Complete 
+
+
+###### Feature #3: Registration
+1. Description - This feature allows users to register for a course/drop a course.
+2. Implementation Strategy -  The user enters crn of the course they want to register for/drop in the search bar. The information is then sent to the server side to update the database. The changes are then reflected on the client side. 
+3. Dependencies - *registration.js* file and *registration.html* file. 
+4. State of the Implementation - completed
+
+
+###### Feature #4: Personal-Info 
+1. Description - This feature allows students to view their personal information such as name, email address, phone number, and address.
+2. Implementation Strategy - User information is stored in a database and retrieved to display on the personal-info page. Users can update their information using a form, and the updated information is stored in the database.(yet to implement)
+3. Dependencies - *findStudentById* method of the *student* class and the *find_student_info* method of the *students* class.
+4. State of the Implementation - Completed
+
+###### Feature #5: Course Schedule
+1. Description - This feature allows students to view their course schedule.
+2. Implementation Strategy - The course schedule is stored in a database, student object is retrieved to display the course schedule. The schedule is displayed in a table format with information such as course name, number, days of class and time.
+3. Dependencies - *getRegisteredCourses* method in the *student* class and *get_reg_courses* method of the *students* class.
+4. State of the Implementation - Completed
+
+###### Feature #6: Detail page(Button)
+1. Description - This feature allows students to view detailed information about a particular professor.
+2. Implementation Strategy - The professor information is stored in a database and retrieved to display on the detail page. The detail page displays information such as the professor's name, email, office , and department.
+3. Dependencies - *Professor* class 
+4. State of the Implementation - Complete
 #### Feature Description:
 
 ###### Feature #1: Login
@@ -67,19 +108,19 @@ and then,
 4. State of the Implementation - completed
 
 
-###### Feature #4: Personal-Info 
+###### Client-side Feature #4: Personal-Info 
 1. Description - This feature allows students to view their personal information such as name, email address, phone number, and address.
-2. Implementation Strategy - User information is stored in a database and retrieved to display on the personal-info page. Users can update their information using a form, and the updated information is stored in the database.(yet to implement)
-3. Dependencies - *findStudentById* method of the *student* class and the *find_student_info* method of the *students* class.
+2. Implementation Strategy - User information is requested from server and presented in the form of an html table
+3. Dependencies - *studentInfo.html* file and *studentInfo.js* file.
 4. State of the Implementation - Completed
 
 ###### Feature #5: Course Schedule
 1. Description - This feature allows students to view their course schedule.
-2. Implementation Strategy - The course schedule is stored in a database, student object is retrieved to display the course schedule. The schedule is displayed in a table format with information such as course name, number, days of class and time.
-3. Dependencies - *getRegisteredCourses* method in the *student* class and *get_reg_courses* method of the *students* class.
+2. Implementation Strategy - An array of registered courses corresponding to the user is requested from server and presented in the form of a table in the format of a course schedule
+3. Dependencies - *schedule.js* file and *schedule.html* file.
 4. State of the Implementation - Completed
 
-###### Feature #6: Detail page(Button)
+###### Feature #6: Professor Detail page
 1. Description - This feature allows students to view detailed information about a particular professor.
 2. Implementation Strategy - The professor information is stored in a database and retrieved to display on the detail page. The detail page displays information such as the professor's name, email, office , and department.
 3. Dependencies - *Professor* class 
