@@ -10,6 +10,7 @@ Late Submission: Monday
 - mongoimport --db=course_catalog --type=csv --headerline --collection=fall 2021-fall.csv
 - mongoimport --db=course_catalog --type=csv --headerline --collection=students students.csv
 - mongoimport --db=course_catalog --type=csv --headerline --collection=professors professors.csv
+- mongoimport --db=course_catalog --type=csv --headerline --collection=faq faq.csv
 
 ### Link to Demonstration Video: 
 [Drive Link](https://drive.google.com/file/d/1o2_zaCm0DHubTf7-2G0o2MDzRDlvJcyf/view?usp=sharing)
